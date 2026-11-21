@@ -7,14 +7,17 @@ it has never been late, and what you need is already coming toward you —
 courage shown, never commanded.
 """
 
-import os
+from pathlib import Path
+
+OUTPUT_PATH = Path("/output/entry.txt")
 
 TEXT = "The sea does not hurry to the shore, and it has never once been late. It comes the way breath comes to a sleeping house — in, and in again, each time a little braver. Stand where the water can reach you. You do not have to chase what is already coming."
 
 
 def main() -> None:
-    os.makedirs("/output", exist_ok=True)
-    with open("/output/entry.txt", "w", encoding="utf-8", newline="") as f:
+    """Write TEXT to OUTPUT_PATH, creating its parent directory if needed."""
+    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    with OUTPUT_PATH.open("w", encoding="utf-8", newline="") as f:
         f.write(TEXT)
 
 
